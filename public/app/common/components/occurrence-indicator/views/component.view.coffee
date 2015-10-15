@@ -1,7 +1,7 @@
-module.exports = ComponentView = ({patterns}) ->
+module.exports = ComponentView = (patterns) ->
 	nxt.Element 'div',
 		nxt.Class 'qd-occurrence-indicator'
-		patterns.map ({pattern, is_matched}) ->
+		nxt.Collection patterns, ({pattern, is_matched}) ->
 			nxt.Element 'div',
 				nxt.Class 'qd-pattern'
 				nxt.Binding is_matched, (is_matched) ->
