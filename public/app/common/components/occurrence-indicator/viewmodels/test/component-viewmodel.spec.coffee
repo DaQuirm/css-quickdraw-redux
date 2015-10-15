@@ -5,16 +5,16 @@ PatternViewModel     = require '../pattern.viewmodel'
 describe 'ComponentViewModel', ->
 
 	view_model = null
-	data = ['this', 'is', 'test', 'data']
+	patterns = new nx.Collection items: ['this', 'is', 'test', 'data']
 
 	beforeEach ->
-		view_model = new ComponentViewModel data
+		view_model = new ComponentViewModel patterns
 
 	describe 'constructor', ->
 
 		it 'saves passed array to `patterns`', ->
-			view_model.patterns.length.should.equal data.length
-			view_model.patterns.every (pattern) -> pattern instanceof PatternViewModel
+			view_model.length.value.should.equal patterns.length.value
+			view_model.items.every (pattern) -> pattern instanceof PatternViewModel
 				.should.equal yes
 
 		it 'creates an nx.Cell property with empty string value', ->
@@ -23,9 +23,9 @@ describe 'ComponentViewModel', ->
 
 	it 'updates the is_matched cell for every pattern', ->
 		view_model.string.value = 'this data'
-		view_model.patterns.map ({is_matched}) -> is_matched.value
+		view_model.items.map ({is_matched}) -> is_matched.value
 			.should.deep.equal [yes, yes, no, yes]
 
 		view_model.string.value = 'data'
-		view_model.patterns.map ({is_matched}) -> is_matched.value
+		view_model.items.map ({is_matched}) -> is_matched.value
 			.should.deep.equal [no, no, no, yes]

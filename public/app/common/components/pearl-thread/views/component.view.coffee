@@ -1,8 +1,8 @@
 PearlView = require './pearl.view.coffee'
 
-PearlsView = (context) ->
+PearlsView = (pearls) ->
 	nxt.Element 'div',
 		nxt.Class 'qd-pearl-thread'
-		context.pearls.map PearlView
+		nxt.Collection pearls, PearlView
 
 module.exports = PearlsView
