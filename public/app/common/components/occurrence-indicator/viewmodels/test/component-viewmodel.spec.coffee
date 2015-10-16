@@ -13,8 +13,8 @@ describe 'ComponentViewModel', ->
 	describe 'constructor', ->
 
 		it 'saves passed array to `patterns`', ->
-			view_model.patterns.length.should.equal data.length
-			view_model.patterns.every (pattern) -> pattern instanceof PatternViewModel
+			view_model.items.length.should.equal data.length
+			view_model.items.every (pattern) -> pattern instanceof PatternViewModel
 				.should.equal yes
 
 		it 'creates an nx.Cell property with empty string value', ->
@@ -23,9 +23,9 @@ describe 'ComponentViewModel', ->
 
 	it 'updates the is_matched cell for every pattern', ->
 		view_model.string.value = 'this data'
-		view_model.patterns.map ({is_matched}) -> is_matched.value
+		view_model.items.map ({is_matched}) -> is_matched.value
 			.should.deep.equal [yes, yes, no, yes]
 
 		view_model.string.value = 'data'
-		view_model.patterns.map ({is_matched}) -> is_matched.value
+		view_model.items.map ({is_matched}) -> is_matched.value
 			.should.deep.equal [no, no, no, yes]

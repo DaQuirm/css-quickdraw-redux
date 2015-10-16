@@ -13,12 +13,12 @@ describe 'ComponentViewModel', ->
 	describe 'constructor', ->
 
 		it 'saves an array of PearlViewModel instances to `pearls`', ->
-			view_model.pearls.length.should.equal data.length
-			view_model.pearls.every (pearl) -> pearl instanceof PearlViewModel
+			view_model.items.length.should.equal data.length
+			view_model.items.every (pearl) -> pearl instanceof PearlViewModel
 				.should.equal true
 
 		it 'uses custom view model if its constructor is passed as the second argument', ->
 			FakePearlViewModel = ->
 			view_model = new ComponentViewModel data, FakePearlViewModel
-			view_model.pearls.every (pearl) -> pearl instanceof FakePearlViewModel
+			view_model.items.every (pearl) -> pearl instanceof FakePearlViewModel
 				.should.equal true

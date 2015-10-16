@@ -1,8 +1,12 @@
+List = require '../../list'
 PatternViewModel = require './pattern.viewmodel'
 
-class ComponentViewModel
+class ComponentViewModel extends List.ViewModel
 	constructor: (patterns) ->
 		@string = new nx.Cell value: ''
-		@patterns = patterns.map (pattern) => new PatternViewModel pattern, @string
+
+		super
+			items: patterns
+			map: (pattern) => new PatternViewModel pattern, @string
 
 module.exports = ComponentViewModel
