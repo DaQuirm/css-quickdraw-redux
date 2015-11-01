@@ -20,6 +20,8 @@ module.exports =
 		'bundle-test': 'app/test.coffee'
 		'bundle-app': 'app/app.coffee'
 		'bundle-landing': 'landing/landing.coffee'
+		'game/bundle-game': 'game/game.coffee'
+		'bundle-game-login': 'login/game-login.coffee'
 
 	output:
 		path: path.join __dirname, './public/dist'
@@ -36,6 +38,14 @@ module.exports =
 		new HtmlWebpackPlugin
 			title: 'CSS Quickdraw'
 			template: 'public/landing/index.html'
+		new HtmlWebpackPlugin
+			title: 'CSSQD - game'
+			template: 'public/game/index.html'
+			filename: 'game/index.html'
+		new HtmlWebpackPlugin
+			title: 'CSSQD - game login'
+			template: 'public/login/game-login.html'
+			filename: 'game-login.html'
 	]
 
 	coffeelint:

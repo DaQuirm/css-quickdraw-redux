@@ -1,0 +1,58 @@
+game-login-bg-image = 'img/game-login-bg.jpg'
+game-login-bg-color = #010101
+game-login-main-color = #fff
+
+game-login-title-top = 10%
+game-login-title-font-size = 3em
+
+game-login-sub-title-top = 30%
+game-login-sub-title-font-size = 2.5em
+
+game-login-panel-top = 50%
+game-login-panel-background = rgba(0, 0, 0, 0.7)
+game-login-panel-icon-margin = 20px 10px
+game-login-panel-icon-height = 80px
+game-login-panel-icon-width = 80px
+
+game-login-main-font = Helvetica, "Helvetica Neue", Arial
+
+body
+	background url(game-login-bg-image) game-login-bg-color no-repeat
+	background-size cover
+	font-family game-login-main-font
+	color game-login-main-color
+
+.game-login-title, .game-login-sub-title
+	text-align center
+	text-transform uppercase
+	position absolute
+	width 100%
+
+.game-login-title
+	top game-login-title-top
+	font-size game-login-title-font-size
+
+.game-login-sub-title
+	top game-login-sub-title-top
+	font-size game-login-sub-title-font-size
+
+.game-login-login-panel
+	position absolute
+	top game-login-panel-top
+	width 100%
+	text-align center
+	background game-login-panel-background
+
+.game-login-login-panel .icon
+	display inline-block
+	vertical-align middle
+	margin game-login-panel-icon-margin
+	width game-login-panel-icon-width
+	height game-login-panel-icon-height
+	background-size contain
+	background-repeat no-repeat
+	background-color #f00
+
+.game-login-login-panel .icon.fb {
+ 	//background-image: url(fb-sheriff.png);
+}
