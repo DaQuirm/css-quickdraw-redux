@@ -13,21 +13,20 @@ GameView = (context) ->
 			nxt.Class 'game-screen-container'
 
 			nxt.Element 'div',
-				nxt.Class 'qd-pearl-thread'
-				nxt.Text 'pear thread'
-
-			nxt.Binding context.puzzle, (puzzle) ->
-				if puzzle.banned_characters.length
-					nxt.Element 'div',
-						nxt.Class 'controls-selector'
-							nxt.Element 'div',
-								nxt.Class 'controls-selector-banned-container'
-								nxt.Text 'Banned characters'
-								nxt.Binding context.occurrenceIndicatorVMCell, (vm) ->
-									OccurrenceIndicatorView vm
-
-			nxt.Element 'div',
 				nxt.Class 'controls'
+
+				nxt.Element 'div',
+					nxt.Class 'qd-pearl-thread'
+					nxt.Text 'pear thread'
+
+				nxt.Binding context.puzzle, (puzzle) ->
+					if puzzle.banned_characters.length
+						nxt.Element 'div',
+							nxt.Class 'controls-selector-banned-container'
+							nxt.Text 'Banned characters'
+							nxt.Binding context.occurrenceIndicatorVMCell, (vm) ->
+								OccurrenceIndicatorView vm
+
 				nxt.Element 'input',
 					nxt.Class 'controls-selector-input'
 					nxt.ValueBinding context.selector
