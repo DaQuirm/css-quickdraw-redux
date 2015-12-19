@@ -16,21 +16,26 @@
 		justify-content space-between
 		align-items stretch
 		flex-flow row nowrap
+		padding .8em 0
 
 	.controls-selector
 		flex-grow 5
 
 	.timespan
 		font-size 3em
-		margin-left 0.5em
+		margin-left 0.3em
 
 	.controls-selector-banned-container
 		width 100%
 		box-sizing border-box
+		display flex
+		align-items center
 
 	.controls-selector-input
 		width 100%
 		box-sizing border-box
+		outline none
+		padding 10px
 
 @media (orientation portrait)
 	.game-screen-container
@@ -41,7 +46,3 @@
 	background #888
 .qd-pearl-thread
 	background #da5
-.match-renderer
-	background #eee!important
-.controls-selector-banned-container
-	background #4fa
