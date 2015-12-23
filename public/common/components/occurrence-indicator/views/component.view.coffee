@@ -1,3 +1,5 @@
+require 'common/stylesheets/occurrence-indicator.styl'
+
 module.exports = ComponentView = ({patterns}) ->
 	nxt.Element 'div',
 		nxt.Class 'qd-occurrence-indicator'

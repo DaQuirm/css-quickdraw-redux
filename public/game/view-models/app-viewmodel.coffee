@@ -7,6 +7,7 @@ Round = require '../models/round'
 MatchRendererViewModel = (require 'common/components/match-renderer').ViewModel
 UserPanelViewModel = (require 'common/components/user-panel').ViewModel
 TimespanViewModel = (require 'common/components/timespan').ViewModel
+OccurrenceIndicatorVM = (require 'common/components/occurrence-indicator').ViewModel
 
 class AppViewModel
 	constructor: (sessionId) ->
@@ -54,6 +55,15 @@ class AppViewModel
 		@userPanelViewModel = new UserPanelViewModel @user_data
 		@roundTimerViewModel = new TimespanViewModel @countdown, dateTimeFormats['m:ss']
 		@countdownViewModel = new TimespanViewModel @countdown, dateTimeFormats['s']
+
+		@occurrenceIndicatorVMCell = new nx.Cell
+			'<-': [
+				@puzzle,
+				(puzzle) =>
+					vm = new OccurrenceIndicatorVM puzzle.banned_characters
+					vm.string['<-'] @selector, nx.Identity
+					vm
+			]
 
 		#Keep session ID set as the last operation as it triggers the data flow
 		@game_session_id.value = sessionId
