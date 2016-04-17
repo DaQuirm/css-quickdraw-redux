@@ -11,6 +11,7 @@ ButtonViewModel = (require 'common/components/button').ViewModel
 PlayersListViewModel = (require 'common/components/players-list').ViewModel
 MatchRenderer = require 'common/components/match-renderer'
 OccurrenceIndicator = require 'common/components/occurrence-indicator'
+PuzzlesProgressViewModel = (require 'common/components/puzzles-progress').ViewModel
 
 class AppViewModel
 	constructor: (sessionId) ->
@@ -93,6 +94,7 @@ class AppViewModel
 		@userPanelViewModel = new UserPanelViewModel @user_data
 		@remainingTimeViewModel = new TimespanViewModel @countdown, dateTimeFormats['m:ss']
 		@playersListViewModel = new PlayersListViewModel @players
+		@puzzlesProgressViewModel = new PuzzlesProgressViewModel @puzzles, @current_puzzle_index
 
 		@matchRenderer = new MatchRenderer.ViewModel
 		@matchRenderer.tag_list['<-'] @puzzle,	({tags}) -> tags

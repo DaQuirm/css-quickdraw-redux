@@ -4,6 +4,7 @@ ButtonView = (require 'common/components/button').View
 PlayersListView = (require 'common/components/players-list').View
 MatchRendererView       = (require 'common/components/match-renderer').View
 OccurrenceIndicatorView = (require 'common/components/occurrence-indicator').View
+PuzzlesProgress = (require 'common/components/puzzles-progress').View
 
 { formatMSS } = (require '../../common/utils/date-time-utils')
 
@@ -18,12 +19,8 @@ AppView = (context) ->
 		nxt.Element 'div',
 			nxt.Class 'game-master-screen-container'
 
-				nxt.Element 'input',
-					nxt.Attr 'readonly', 'readonly'
-					nxt.Class 'client-url'
-					nxt.Event 'focus', -> do @select
-					nxt.Binding context.game_session_id, (sessionId) ->
-						nxt.Attr 'value', "#{location.origin}/game.html?id=#{sessionId}"
+				#TODO
+				#PuzzlesProgress context.puzzlesProgressViewModel
 
 				nxt.Binding context.puzzles, (puzzles) ->
 					nxt.Element 'div',

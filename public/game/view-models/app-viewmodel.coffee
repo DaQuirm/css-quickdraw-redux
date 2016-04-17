@@ -12,6 +12,7 @@ MatchRenderer = require 'common/components/match-renderer'
 OccurrenceIndicator = require 'common/components/occurrence-indicator'
 UserPanelViewModel = (require 'common/components/user-panel').ViewModel
 TimespanViewModel = (require 'common/components/timespan').ViewModel
+PuzzlesProgressViewModel = (require 'common/components/puzzles-progress').ViewModel
 
 class AppViewModel
 	constructor: (sessionId) ->
@@ -67,6 +68,8 @@ class AppViewModel
 		@userPanelViewModel = new UserPanelViewModel @user_data
 		@roundTimerViewModel = new TimespanViewModel @countdown, dateTimeFormats['m:ss']
 		@countdownViewModel = new TimespanViewModel @countdown, dateTimeFormats['s']
+		#TODO: how to get current index?!
+		@puzzlesProgressViewModel = new PuzzlesProgressViewModel @rounds, new nx.Cell({value: 3})
 
 		@puzzle_solved = Cascade @round_phase, @match, (round_phase, match) ->
 			round_phase is RoundPhase.IN_PROGRESS and match.result is SelectorMatchResult.POSITIVE
