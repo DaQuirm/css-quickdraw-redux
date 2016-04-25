@@ -28,8 +28,6 @@ class AppViewModel
 		@selector = new nx.Cell
 		@match = new nx.Cell
 
-		@rounds = new nx.Collection
-
 		@view = new nx.Cell
 			'<-': [
 					@round_phase,
@@ -49,10 +47,6 @@ class AppViewModel
 
 				selector: @selector
 				match:    @match
-
-				rounds:
-					link: @rounds
-					item_from_json: ({status, solution}) -> new Round status, solution
 
 		@matchRenderer = new MatchRenderer.ViewModel
 		@matchRenderer.tag_list['<-'] @puzzle, ({tags}) -> tags
