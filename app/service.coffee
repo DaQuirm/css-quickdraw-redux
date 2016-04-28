@@ -1,6 +1,5 @@
 warp = require 'nexus-warp'
 co   = require 'co'
-Nightmare = require 'nightmare'
 
 { APP_BASE_URL } = require 'cssqd-config/constants'
 
