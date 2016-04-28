@@ -33,18 +33,4 @@ class Service
 				http_server:     http_server
 				session_manager: new SessionManager @
 
-		co(->
-			nightmare = do Nightmare
-
-			yield nightmare
-				.cookies.set
-					name: 'koa:sess'
-					value: 'eyJwYXNzcG9ydCI6eyJ1c2VyIjoic2FuZGJveCJ9fQ=='
-					url: APP_BASE_URL
-
-			yield nightmare.goto 'http://localhost:3000/sandbox.html'
-
-		).catch (err) -> console.log err
-		 .then -> console.log 'cssqd-service:ready'
-
 module.exports = Service
