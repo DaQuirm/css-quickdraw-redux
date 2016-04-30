@@ -55,6 +55,8 @@ class GameSession
 			'<-': [
 				@node_list
 				(node_list) =>
+					name: @raw_puzzle.value.name
+					time_limit: GameSession.ROUND_DURATION
 					index: @round_start.value.puzzle_index
 					tags: node_list
 					banned_characters: @raw_puzzle.value.banned
@@ -72,11 +74,15 @@ class GameSession
 		@round_start_time = new nx.Cell
 			'<-': [@round_start, -> do Date.now + GameSession.COUNTDOWN_DURATION]
 
+		@round_end = new nx.Cell
+		@round_end['->'] @round_phase, -> RoundPhase.FINISHED
+
 		@command = new nx.Cell
 			'->': [
 				(({action}) =>
-					if action is GameSessionCommand.START_ROUND
-						@round_start),
+					switch action
+							when GameSessionCommand.START_ROUND then @round_start
+							when GameSessionCommand.END_ROUND then @round_end),
 				({data}) -> data
 			]
 
