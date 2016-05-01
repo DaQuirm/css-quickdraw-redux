@@ -12,6 +12,7 @@ MatchRenderer = require 'common/components/match-renderer'
 OccurrenceIndicator = require 'common/components/occurrence-indicator'
 UserPanelViewModel = (require 'common/components/user-panel').ViewModel
 TimespanViewModel = (require 'common/components/timespan').ViewModel
+CountdownCircleViewModel = (require 'common/components/countdown-circle').ViewModel
 PuzzlesProgressViewModel = (require 'common/components/puzzles-progress').ViewModel
 
 class AppViewModel
@@ -23,6 +24,7 @@ class AppViewModel
 		@round_phase = new nx.Cell
 		@puzzle = new nx.Cell
 		@countdown = new nx.Cell
+		@currentRoundTimeLimit = new nx.Cell
 		@role = new nx.Cell
 
 		@selector = new nx.Cell
@@ -60,7 +62,12 @@ class AppViewModel
 		@occurrenceIndicator.string['<-'] @selector
 
 		@userPanelViewModel = new UserPanelViewModel @user_data
-		@roundTimerViewModel = new TimespanViewModel @countdown, dateTimeFormats['m:ss']
+
+		@currentRoundTimeLimit['<-'] @puzzle, (puzzle) -> puzzle.time_limit
+		@roundTimerViewModel = new CountdownCircleViewModel @countdown,
+			@currentRoundTimeLimit
+			dateTimeFormats['m:ss']
+			{ radius: 40, strokeWidth: 5 }
 		@countdownViewModel = new TimespanViewModel @countdown, dateTimeFormats['s']
 		#TODO: how to get current index?!
 		@puzzlesProgressViewModel = new PuzzlesProgressViewModel @rounds, new nx.Cell({value: 3})
