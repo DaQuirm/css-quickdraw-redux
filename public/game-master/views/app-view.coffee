@@ -1,5 +1,5 @@
 UserPanelView = (require 'common/components/user-panel').View
-TimespanView = (require 'common/components/timespan').View
+CountdownCircleView     = (require 'common/components/countdown-circle').View
 ButtonView = (require 'common/components/button').View
 GameControlButtonView = (require 'common/components/game-control-button').View
 PlayersListView = (require 'common/components/players-list').View
@@ -50,10 +50,7 @@ AppView = (context) ->
 
 								GameControlButtonView context.gameControlButtonViewModel
 
-							nxt.Element 'div',
-								nxt.Class 'level-timing'
-
-								TimespanView context.remainingTimeViewModel
+							CountdownCircleView context.roundTimerViewModel
 
 						nxt.Element 'div',
 							nxt.Class 'master-controls-solution-container'
