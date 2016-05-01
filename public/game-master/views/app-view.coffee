@@ -46,12 +46,9 @@ AppView = (context) ->
 
 								nxt.Element 'p',
 									nxt.Class 'levels-info-name'
-									nxt.Binding context.current_puzzle, (puzzle) ->
-										if puzzle?
-											nxt.Text puzzle.name
+									nxt.Binding context.current_puzzle, (puzzle) -> nxt.Text puzzle?.name or "Puzzle #{puzzle?.index}"
 
-								nxt.Element 'div',
-									nxt.Text 'BUTTON'
+								GameControlButtonView context.gameControlButtonViewModel
 
 							nxt.Element 'div',
 								nxt.Class 'level-timing'
@@ -119,8 +116,6 @@ AppView = (context) ->
 
 					nxt.Element 'div',
 						nxt.Class 'master-controls-gameplay'
-
-						GameControlButtonView context.gameControlButtonViewModel
 
 						ButtonView context.StartButtonViewModel
 						ButtonView context.StopButtonViewModel
