@@ -33,7 +33,7 @@ class Service
 				path: "#{__dirname}/../cssqd-warp-log.json"
 			]
 
-		@log = ({type, session, data}) =>
+		@log = ({type, session, data}) ->
 			logger.info
 				type: type
 				user_id: session.facet.participant?.id or 'sandbox'
