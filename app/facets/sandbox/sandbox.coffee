@@ -15,7 +15,6 @@ class Sandbox
 					if @memory.has selector
 						match = @memory.get selector
 						match.player_id = player_id
-						match.time = 0
 						@match.value = match
 						[]
 					else
