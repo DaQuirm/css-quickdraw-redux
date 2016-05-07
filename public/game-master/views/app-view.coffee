@@ -7,7 +7,7 @@ GameControlButtonView = (require 'common/components/game-control-button').View
 MatchRendererView       = (require 'common/components/match-renderer').View
 OccurrenceIndicatorView = (require 'common/components/occurrence-indicator').View
 
-{ formatMSS } = (require '../../common/utils/date-time-utils')
+{ formatMSS } = require '../../common/utils/date-time-utils'
 
 RoundPhase = require 'cssqd-shared/models/round-phase'
 
