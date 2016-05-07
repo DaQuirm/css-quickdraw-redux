@@ -1,3 +1,4 @@
 module.exports =
-  ViewModel:      require './view-models/players-list.viewmodel'
-  View:           require './views/'
+	ViewModel:								require './view-models/players-list.viewmodel'
+	PlayersListView:					require './views/players-list-view'
+	PlayersSolutionsListView:	require './views/players-solutions-list-view'

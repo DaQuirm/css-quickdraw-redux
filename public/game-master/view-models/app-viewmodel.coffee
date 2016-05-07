@@ -138,7 +138,7 @@ class AppViewModel
 
 		@round_phase['->'] \
 			((phase) =>
-				if phase is RoundPhase.FINISHED
+				if phase is RoundPhase.COUNTDOWN
 					@playersListViewModel.players.items.map (player) -> player.solution
 				else
 					[]),
