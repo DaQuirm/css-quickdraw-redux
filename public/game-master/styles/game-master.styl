@@ -10,6 +10,7 @@ user-list-column-max-width = 400px
 		height user-panel-height
 
 .game-master-screen-container
+	position relative
 	padding 0 main-left-offset 0 main-right-offset
 
 	.game-master-screen-columns
@@ -58,6 +59,30 @@ user-list-column-max-width = 400px
 				.aggregate-score-item
 					color holy-white
 					border-bottom 1px solid separator-color
+
+	.scores-toggle-button-container
+		position absolute
+		right main-right-offset * 0.5
+		top 0
+		height 100%
+		display flex
+
+		.toggle-button
+			color secondary-action-color
+			background alpha(holy-white, .15)
+			font-size 3em
+			padding 0 .1em
+			align-self center
+
+			&:before
+				content '\f104'
+				font-family AwesomeIcon
+			&.-toggled
+				&:before
+					content '\f105'
+
+			&:hover
+				background secondary-action-background-color
 
 	.qd-pearl-thread
 		width 100%

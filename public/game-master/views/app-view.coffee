@@ -1,6 +1,7 @@
 UserPanelView = (require 'common/components/user-panel').View
 CountdownCircleView     = (require 'common/components/countdown-circle').View
 ButtonView = (require 'common/components/button').View
+ToggleButtonView = (require 'common/components/toggle-button').View
 GameControlButtonView = (require 'common/components/game-control-button').View
 { PlayersListView, PlayersSolutionsListView } = (require 'common/components/players-list')
 MatchRendererView       = (require 'common/components/match-renderer').View
@@ -83,6 +84,16 @@ AppView = (context) ->
 								PlayersSolutionsListView context.playersListViewModel
 							else
 								PlayersListView context.playersListViewModel
+
+				nxt.Element 'div',
+					nxt.Class 'scores-toggle-button-container'
+					ToggleButtonView context.showScoresTogglerViewModel
+
+				nxt.Element 'div',
+					nxt.Class 'scores-table-container'
+					nxt.Text 'TABLE'
+					nxt.Binding context.showScoresTogglerViewModel.value, (show) ->
+						nxt.Class '-visible' if show
 
 			nxt.Element 'div',
 				nxt.Class 'master-controls-container'

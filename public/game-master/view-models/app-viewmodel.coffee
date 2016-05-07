@@ -8,6 +8,7 @@ GameSessionCommand = require 'cssqd-shared/models/game-session-command'
 UserPanelViewModel = (require 'common/components/user-panel').ViewModel
 TimespanViewModel = (require 'common/components/timespan').ViewModel
 ButtonViewModel = (require 'common/components/button').ViewModel
+ToggleButtonViewModel = (require 'common/components/toggle-button').ViewModel
 GameControlButtonViewModel = (require 'common/components/game-control-button').ViewModel
 PlayersListViewModel = (require 'common/components/players-list').ViewModel
 MatchRenderer = require 'common/components/match-renderer'
@@ -36,6 +37,8 @@ class AppViewModel
 		@StartButtonViewModel = new ButtonViewModel 'Start'
 		@StopButtonViewModel = new ButtonViewModel 'Stop'
 		@NextButtonViewModel = new ButtonViewModel 'Next'
+
+		@showScoresTogglerViewModel = new ToggleButtonViewModel '', no
 
 		@gameControlButtonViewModel = new GameControlButtonViewModel @round_phase
 
