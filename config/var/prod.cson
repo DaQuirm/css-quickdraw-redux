@@ -1,0 +1,8 @@
+{
+	mongo:
+		host: "mongodb://localhost"
+		db: "cssqd"
+	service:
+		host: 'cssqd.io'
+		port: 3000
+}

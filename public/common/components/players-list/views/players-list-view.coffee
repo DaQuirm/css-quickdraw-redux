@@ -1,5 +1,5 @@
 require '../styles/players-list.styl'
-{ formatMSS } = (require '../../../utils/date-time-utils')
+{ formatMSS } = require '../../../utils/date-time-utils'
 
 PlayersListView = (context) ->
 	nxt.Element 'div',
@@ -23,10 +23,10 @@ PlayersListView = (context) ->
 				nxt.Class 'sub-meta'
 				nxt.Element 'div',
 					nxt.Class 'amount'
-					nxt.Binding context.passedCount, nxt.Text
+					nxt.Binding context.solvedCount, nxt.Text
 				nxt.Element 'div',
 					nxt.Class 'text'
-					nxt.Text 'Passed'
+					nxt.Text 'Solved'
 
 		nxt.Element 'div',
 			nxt.Class 'players-list-table'
@@ -40,7 +40,7 @@ PlayersListView = (context) ->
 					nxt.Class '-time'
 					nxt.Text 'Time'
 				nxt.Element 'div',
-					nxt.Class '-time'
+					nxt.Class '-length'
 					nxt.Text 'Length'
 
 			#TODO: make an abstract rendering component and re-use for agregate score list

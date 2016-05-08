@@ -27,10 +27,13 @@ class GameSession
 		Switchboard =
 			to: (id, cell) =>
 				participant = @participants_by_id.get id
-				participant[cell]
+				participant?[cell] or Switchboard.nobody
 
 			to_score: (id) =>
-				@score.get id
+				if @score.has id
+					@score.get id
+				else
+					Switchboard.nobody
 
 			all_scores: =>
 				cells = []
@@ -57,6 +60,7 @@ class GameSession
 				(node_list) =>
 					name: @raw_puzzle.value.name
 					time_limit: GameSession.ROUND_DURATION
+					countdown_limit: GameSession.COUNTDOWN_DURATION
 					index: @round_start.value.puzzle_index
 					tags: node_list
 					banned_characters: @raw_puzzle.value.banned

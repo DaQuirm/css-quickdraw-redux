@@ -2,9 +2,11 @@
 @import '../../../stylesheets/common'
 
 meta-separator = 1px solid separator-color
-list-item-separator = 2px solid separator-color
+list-header-separator = 2px solid separator-color
+list-item-separator = 1px solid separator-color
+cell-padding = .5em
 
-.players-list
+.players-list, .players-scores-list
 
 	.players-list-meta
 		display flex
@@ -37,21 +39,36 @@ list-item-separator = 2px solid separator-color
 		.header, .item
 			display flex
 			justify-content space-between
-			border-bottom list-item-separator
 			line-height 2.5em
 
 		.header
 			color secondary-text-color
+			border-bottom list-header-separator
 
 		.item
 			color holy-white
+			border-bottom list-item-separator
 
 			&.-passed
 				color success-green
 
+		.-name, .-selector
+			white-space nowrap
+			overflow hidden
+			text-overflow ellipsis
+
 		.-name
 			flex-grow 3
+			flex-basis 100%
+			margin-right cell-padding
 		.-time, .-length
 			flex-grow 1
-			flex-basis 3em
+			flex-basis 7em
 			text-align right
+		.-selector
+			flex-grow 2
+			flex-basis 100%
+			text-align right
+			margin-left cell-padding
+		.-selector-value
+			font-family monospace

@@ -33,7 +33,6 @@ connection.once 'open', ->
 	http_server = app.listen cssqdConfig.get 'service:port'
 	(new Service).start http_server
 
-
 electron_process = spawn electron, ['./electron'],
 	stdio:'inherit'
 	cwd: path.join __dirname, 'app'

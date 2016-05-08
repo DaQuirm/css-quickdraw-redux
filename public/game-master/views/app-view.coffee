@@ -1,13 +1,14 @@
 UserPanelView = (require 'common/components/user-panel').View
-TimespanView = (require 'common/components/timespan').View
+CountdownCircleView     = (require 'common/components/countdown-circle').View
 ButtonView = (require 'common/components/button').View
+ToggleButtonView = (require 'common/components/toggle-button').View
 GameControlButtonView = (require 'common/components/game-control-button').View
-PlayersListView = (require 'common/components/players-list').View
+{ PlayersListView, PlayersSolutionsListView, PlayersScoreListView } = require 'common/components/players-list'
 MatchRendererView       = (require 'common/components/match-renderer').View
 OccurrenceIndicatorView = (require 'common/components/occurrence-indicator').View
 PuzzlesProgress = (require 'common/components/puzzles-progress').View
 
-{ formatMSS } = (require '../../common/utils/date-time-utils')
+{ formatMSS } = require '../../common/utils/date-time-utils'
 
 RoundPhase = require 'cssqd-shared/models/round-phase'
 
@@ -50,17 +51,11 @@ AppView = (context) ->
 
 								nxt.Element 'p',
 									nxt.Class 'levels-info-name'
-									nxt.Binding context.current_puzzle, (puzzle) ->
-										if puzzle?
-											nxt.Text puzzle.name
+									nxt.Binding context.current_puzzle, (puzzle) -> nxt.Text puzzle?.name or "Puzzle #{puzzle?.index}"
 
-								nxt.Element 'div',
-									nxt.Text 'BUTTON'
+								GameControlButtonView context.gameControlButtonViewModel
 
-							nxt.Element 'div',
-								nxt.Class 'level-timing'
-
-								TimespanView context.remainingTimeViewModel
+							CountdownCircleView context.roundTimerViewModel
 
 						nxt.Element 'div',
 							nxt.Class 'master-controls-solution-container'
@@ -87,33 +82,20 @@ AppView = (context) ->
 
 					nxt.Element 'div',
 						nxt.Class 'user-list-column'
+						nxt.Binding context.showScoresTogglerViewModel.value, (show) ->
+							nxt.Class '-score-view' if show
 
 						nxt.Binding context.round_phase, (phase) ->
 							if phase is RoundPhase.FINISHED
-								nxt.Element 'div',
-									nxt.Class 'aggregate-score'
-
-									nxt.Element 'div',
-										nxt.Class 'header'
-										nxt.Element 'div',
-											nxt.Class '-name'
-											nxt.Text 'Player Name'
-										nxt.Element 'div',
-											nxt.Class '-time'
-											nxt.Text 'Time'
-
-									nxt.Binding context.aggregate_score, (scores = []) ->
-										nxt.Fragment scores.map ({name, score}, rating) ->
-											nxt.Element 'div',
-												nxt.Class 'aggregate-score-item'
-												nxt.Element 'div',
-													nxt.Class 'aggregate-score-player-name'
-													nxt.Text "#{name}"
-												nxt.Element 'div',
-													nxt.Class 'aggregate-score-player-score'
-													nxt.Text "#{formatMSS score}"
+								PlayersSolutionsListView context.playersListViewModel
 							else
 								PlayersListView context.playersListViewModel
+
+						PlayersScoreListView context.playersScoresListViewModel
+
+				nxt.Element 'div',
+					nxt.Class 'scores-toggle-button-container'
+					ToggleButtonView context.showScoresTogglerViewModel
 
 			nxt.Element 'div',
 				nxt.Class 'master-controls-container'
@@ -123,8 +105,6 @@ AppView = (context) ->
 
 					nxt.Element 'div',
 						nxt.Class 'master-controls-gameplay'
-
-						GameControlButtonView context.gameControlButtonViewModel
 
 						ButtonView context.StartButtonViewModel
 						ButtonView context.StopButtonViewModel
