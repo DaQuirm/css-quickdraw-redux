@@ -125,6 +125,7 @@ class AppViewModel
 
 		@roundTimerViewModel = new CountdownCircleViewModel @countdown,
 			@currentRoundTimeLimit
+			1000
 			dateTimeFormats['m:ss']
 			{ radius: 40, strokeWidth: 5 }
 

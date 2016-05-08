@@ -65,6 +65,7 @@ class AppViewModel
 		@currentRoundTimeLimit['<-'] @puzzle, (puzzle) -> puzzle.time_limit
 		@roundTimerViewModel = new CountdownCircleViewModel @countdown,
 			@currentRoundTimeLimit
+			1000
 			dateTimeFormats['m:ss']
 			{ radius: 40, strokeWidth: 5 }
 		@countdownViewModel = new TimespanViewModel @countdown, dateTimeFormats['s']
