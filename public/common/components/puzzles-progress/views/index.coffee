@@ -16,6 +16,9 @@ PuzzlesProgressView = (context) ->
 					nxt.Element 'div',
 						nxt.Class 'puzzles-progress-indicator'
 						nxt.Class context.getPuzzleClass index, current_index
-						nxt.Text context.getPuzzleText index, current_index, puzzle
+
+						nxt.Element 'div',
+							nxt.Class 'puzzles-progress-indicator-content'
+							nxt.Text context.getPuzzleText index, current_index, puzzle
 
 module.exports = PuzzlesProgressView

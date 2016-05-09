@@ -30,6 +30,8 @@ circled-result(icon, icon-color)
 		justify-content space-between
 
 		.puzzles-progress-indicator
+			position relative
+			width circle-size
 			height circle-size
 			text-align center
 			line-height circle-size
@@ -38,8 +40,19 @@ circled-result(icon, icon-color)
 
 			&.-solved
 				circled-result('\f00c', main-text)
-				width circle-size
 
 			&.-current
 				color main-text
 
+			.puzzles-progress-indicator-content
+				position absolute
+				transform translateX(-50%)
+				white-space nowrap
+
+			&:first-child, &:last-child
+				.puzzles-progress-indicator-content
+					transform translateX(0)
+
+			&:last-child
+				.puzzles-progress-indicator-content
+					right 0
