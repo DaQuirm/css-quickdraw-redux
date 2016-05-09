@@ -15,12 +15,14 @@ UserPanelViewModel = (require 'common/components/user-panel').ViewModel
 TimespanViewModel = (require 'common/components/timespan').ViewModel
 CountdownCircleViewModel = (require 'common/components/countdown-circle').ViewModel
 PuzzlesProgressViewModel = (require 'common/components/puzzles-progress').ViewModel
+ButtonViewModel = (require 'common/components/button').ViewModel
 
 class AppViewModel
 	constructor: (sessionId) ->
 		@SELECTOR_MAX_LENGTH = 128
 
 		@user_data = new nx.Cell
+		@session_info = new nx.Cell
 		@game_session_id = new nx.Cell
 		@round_phase = new nx.Cell
 		@puzzle = new nx.Cell
@@ -43,6 +45,7 @@ class AppViewModel
 			entities:
 				user_data:       @user_data
 				game_session_id: @game_session_id
+				session_info:    @session_info
 				round_phase:     @round_phase
 				puzzle:          @puzzle
 				countdown:       @countdown
@@ -50,6 +53,8 @@ class AppViewModel
 
 				selector: @selector
 				match:    @match
+
+		@listenToConnectionClose @warp_client.transport
 
 		@matchRenderer = new MatchRenderer.ViewModel
 		@matchRenderer.tag_list['<-'] @puzzle, ({tags}) -> tags
@@ -80,7 +85,18 @@ class AppViewModel
 		@puzzle_solved['<-'] @round_phase, (round_phase) ->
 			round_phase isnt RoundPhase.IN_PROGRESS
 
+		@RefreshButtonViewModel = new ButtonViewModel ''
+		@RefreshButtonViewModel.click.onvalue.add ->
+			do window.location.reload
+
 		#Keep session ID set as the last operation as it triggers the data flow
 		@game_session_id.value = sessionId
+
+	listenToConnectionClose: (transport) ->
+		if transport.socket
+			transport.socket.onclose = (event) =>
+				#check event.code https://developer.mozilla.org/en-US/docs/Web/API/CloseEvent ?
+				@view.value = RoundPhase.DISCONNECTED
+
 
 module.exports = AppViewModel
