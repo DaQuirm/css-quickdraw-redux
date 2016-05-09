@@ -21,8 +21,7 @@ AppView = (context) ->
 		nxt.Element 'div',
 			nxt.Class 'game-master-screen-container'
 
-				#TODO
-				#PuzzlesProgress context.puzzlesProgressViewModel
+				PuzzlesProgress context.puzzlesProgressViewModel
 
 				nxt.Binding context.puzzles, (puzzles) ->
 					nxt.Element 'div',

@@ -23,7 +23,7 @@ class AppViewModel
 		@user_data = new nx.Cell
 		@game_session_id = new nx.Cell
 		@round_phase = new nx.Cell
-		@puzzles = new nx.Cell
+		@puzzles = new nx.Cell value: []
 		@puzzle = new nx.Cell
 		@command = new nx.Cell
 		@countdown = new nx.Cell

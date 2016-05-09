@@ -22,6 +22,7 @@ circled-result(icon, icon-color)
 		width 100%
 		height 3px
 		background main-text
+		transition width 1s
 
 	.puzzles-progress-indicators
 		margin-top 5px
@@ -29,7 +30,6 @@ circled-result(icon, icon-color)
 		justify-content space-between
 
 		.puzzles-progress-indicator
-			width circle-size
 			height circle-size
 			text-align center
 			line-height circle-size
@@ -38,6 +38,8 @@ circled-result(icon, icon-color)
 
 			&.-solved
 				circled-result('\f00c', main-text)
+				width circle-size
 
-			&.-timeout
-				circled-result('\f00d', main-text)
+			&.-current
+				color main-text
+

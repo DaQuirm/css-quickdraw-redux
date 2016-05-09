@@ -27,7 +27,9 @@ class AppViewModel
 		@round_phase = new nx.Cell
 		@puzzle = new nx.Cell
 		@countdown = new nx.Cell
+		@puzzles = new nx.Cell
 		@currentRoundTimeLimit = new nx.Cell
+		@currentRoundIndex = new nx.Cell
 		@role = new nx.Cell
 
 		@selector = new nx.Cell
@@ -70,14 +72,16 @@ class AppViewModel
 		@userPanelViewModel = new UserPanelViewModel @user_data
 
 		@currentRoundTimeLimit['<-'] @puzzle, (puzzle) -> puzzle.time_limit
+		@currentRoundIndex['<-'] @puzzle, (puzzle) -> puzzle.index
 		@roundTimerViewModel = new CountdownCircleViewModel @countdown,
 			@currentRoundTimeLimit
 			COUNTDOWN_TIMER_STEP
 			dateTimeFormats['m:ss']
 			{ radius: 40, strokeWidth: 5 }
 		@countdownViewModel = new TimespanViewModel @countdown, dateTimeFormats['s']
-		#TODO: how to get current index?!
-		@puzzlesProgressViewModel = new PuzzlesProgressViewModel @rounds, new nx.Cell({value: 3})
+
+		@puzzles['<-'] @session_info, (info) -> info.puzzle_names.map (name) -> name: name
+		@puzzlesProgressViewModel = new PuzzlesProgressViewModel @puzzles, @currentRoundIndex
 
 		@puzzle_solved = Cascade @round_phase, @match, (round_phase, match) ->
 			round_phase is RoundPhase.IN_PROGRESS and match.result is SelectorMatchResult.POSITIVE

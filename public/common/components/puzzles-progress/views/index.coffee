@@ -1,7 +1,5 @@
 require '../styles/puzzles-progress.styl'
 
-RoundStatus = require 'cssqd-shared/models/round-status'
-
 PuzzlesProgressView = (context) ->
 	nxt.Element 'div',
 		nxt.Class 'puzzles-progress'
@@ -13,10 +11,11 @@ PuzzlesProgressView = (context) ->
 
 		nxt.Element 'div',
 			nxt.Class 'puzzles-progress-indicators'
-			nxt.Collection context.puzzles, (round, index) ->
-				nxt.Element 'div',
-					nxt.Class 'puzzles-progress-indicator'
-					nxt.Class "-#{round.status.value}"
-					nxt.Text (index + 1) if round.status.value is RoundStatus.SOLVING
+			nxt.Binding context.puzzles_change, ([puzzles, current_index]) ->
+				nxt.Fragment puzzles.map (puzzle, index) ->
+					nxt.Element 'div',
+						nxt.Class 'puzzles-progress-indicator'
+						nxt.Class context.getPuzzleClass index, current_index
+						nxt.Text context.getPuzzleText index, current_index, puzzle
 
 module.exports = PuzzlesProgressView
