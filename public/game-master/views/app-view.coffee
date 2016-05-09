@@ -100,6 +100,9 @@ AppView = (context) ->
 				nxt.Class 'master-controls-container'
 
 				nxt.Element 'div',
+					nxt.Binding context.current_puzzle_index, nxt.Text
+
+				nxt.Element 'div',
 					nxt.Class 'master-controls'
 
 					nxt.Element 'div',
@@ -108,8 +111,5 @@ AppView = (context) ->
 						ButtonView context.StartButtonViewModel
 						ButtonView context.StopButtonViewModel
 						ButtonView context.NextButtonViewModel
-
-		nxt.Element 'div',
-			nxt.Binding context.current_puzzle_index, nxt.Text
 
 module.exports = AppView
