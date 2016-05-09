@@ -6,7 +6,7 @@ DisconnectedView = (context) ->
 
 		nxt.Element 'h1',
 			nxt.Class 'disconnected-message'
-			nxt.Text 'Seems you`ve gone offline. Please try refresh the page'
+			nxt.Text 'Seems like you’ve gone offline. Please try refreshing the page'
 
 		nxt.Element 'div',
 			nxt.Class 'refresh-button-container'
