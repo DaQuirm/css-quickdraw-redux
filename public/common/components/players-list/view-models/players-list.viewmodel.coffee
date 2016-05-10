@@ -10,7 +10,7 @@ class PlayersListViewModel
 				(change, length) =>
 					@players.value.reduce \
 						((solved, player) ->
-							if player.solution.value?.correct is yes then (solved + 1) else solved),
+							if player.solution.value?.correct then (solved + 1) else solved),
 						0
 			]
 
