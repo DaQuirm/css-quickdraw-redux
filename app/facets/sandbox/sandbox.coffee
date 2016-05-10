@@ -14,7 +14,7 @@ class Sandbox
 				({selector, player_id}) =>
 					if @memory.has selector
 						match = @memory.get selector
-						match.player_id = player_id
+						match = @cloneMatch match, player_id
 						@match.value = match
 						[]
 					else
@@ -29,5 +29,19 @@ class Sandbox
 		@puzzle_data = new nx.Cell
 		@node_list = new nx.Cell
 			action: => do @memory.clear
+
+	cloneMatch: (match, player_id) ->
+		matchClone =
+			selector: match.selector
+			result: match.result
+			ids: do match.ids.slice
+			player_id: player_id
+
+		if match.banned
+			matchClone.banned =
+				character: match.banned.character
+				at: match.banned.at
+
+		matchClone
 
 module.exports = Sandbox
