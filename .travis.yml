@@ -8,7 +8,6 @@ before_install:
   - sh -e /etc/init.d/xvfb start
 
 before_script:
-  - echo -e "Host cssqd.io\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
   - npm install -g bower
   - bower i
 
@@ -18,11 +17,3 @@ notifications:
 
 services:
   - mongodb
-
-after_success:
-  - eval "$(ssh-agent -s)"
-  - echo $deploy_key > .travis/deploy_key.pem
-  - chmod 600 .travis/deploy_key.pem
-  - ssh-add .travis/deploy_key.pem
-  - git remote add DO git@cssqd.io:cssqd
-  - git push DO master
