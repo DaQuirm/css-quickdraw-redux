@@ -6,7 +6,7 @@ class PlayersListViewModel
 	constructor: (@players) ->
 		@solvedCount = new nx.Cell
 			'<-': [
-				[ @players.transform.change, @players.length],
+				[ @players.transform.change, @players.length ],
 				(change, length) =>
 					@players.value.reduce \
 						((solved, player) ->
