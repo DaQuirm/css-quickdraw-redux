@@ -2,7 +2,7 @@
 
 class Sandbox
 
-	constructor: ->
+	constructor: (@log) ->
 		@memory = new Map
 
 		@remote =
@@ -14,10 +14,17 @@ class Sandbox
 				({selector, player_id}) =>
 					if @memory.has selector
 						match = @memory.get selector
+						@log
+							message: 'match_in_memory'
+							selector: selector
+							match: match
 						match = @cloneMatch match, player_id
 						@match.value = match
 						[]
 					else
+						@log
+							message: 'execute_match'
+							selector: selector
 						@remote.selector
 			]
 
@@ -29,6 +36,8 @@ class Sandbox
 		@puzzle_data = new nx.Cell
 		@node_list = new nx.Cell
 			action: => do @memory.clear
+
+		@log 'sandbox created'
 
 	cloneMatch: (match, player_id) ->
 		matchClone =
