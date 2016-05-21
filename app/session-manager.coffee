@@ -15,7 +15,7 @@ class SessionManager
 		session_cookie = cookies.find ({name}) ->
 			name is 'koa:sess'
 
-		unless session_cookie
+		unless session_cookie?
 			return done new Error 'Not Authenticated'
 
 		session_data = JSON.parse (new Buffer session_cookie.value, 'base64').toString 'utf8'
