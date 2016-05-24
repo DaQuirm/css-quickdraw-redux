@@ -56,9 +56,7 @@ GameView = (context) ->
 
 				nxt.Binding context.puzzle_solved, (isSolved) ->
 					if isSolved
-						nxt.Element 'div',
-							nxt.Class 'success-marker'
-							nxt.Text '✓'
+						CountdownCircleView context.solutionTimerViewModel
 					else
 						CountdownCircleView context.roundTimerViewModel
 
