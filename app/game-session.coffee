@@ -200,7 +200,7 @@ class GameSession
 
 		@puzzles.value = puzzles
 
-	get_solution_time: (time_stamp)->
+	get_solution_time: (time_stamp) ->
 		time_stamp - @round_start_time.value
 
 	add_participant: (participant) ->
