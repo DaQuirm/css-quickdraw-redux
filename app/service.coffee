@@ -22,6 +22,8 @@ class Service
 		@facets_sandbox_log = (info) ->
 			facets_sandbox_logger.info info
 
+		facets_sandbox_logger.info "#{Array(10).fill('-----').join('')} Service start #{Array(10).fill('-----').join('')}"
+
 		@sandbox = new Sandbox @facets_sandbox_log
 
 		@game_sessions = null
@@ -46,6 +48,8 @@ class Service
 				type: type
 				user_id: session.facet.participant?.id or 'sandbox'
 				data: data
+
+		logger.info "#{Array(10).fill('-----').join('')} Service start #{Array(10).fill('-----').join('')}"
 
 		logger.info 'service-start'
 		new warp.Service
