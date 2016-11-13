@@ -1,5 +1,5 @@
 { spawn }   = require 'child_process'
-electron    = require 'electron-prebuilt'
+electron    = require 'electron'
 
 cssqdConfig = require 'cssqd-config'
 path        = require 'path'
