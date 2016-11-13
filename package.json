@@ -14,7 +14,7 @@
     "dev-test-debug": "NODE_ENV=test NODE_PATH=./app coffee --nodejs --debug-brk index.coffee 2>>cssqderr.log",
     "prepush": "npm run coffeelint && npm test",
     "prod": "NODE_ENV=prod npm start",
-    "start": "NODE_PATH=./app coffee index.coffee 2>>cssqderr.log",
+    "start": "NODE_PATH=./app coffee index.coffee",
     "test": "npm run test-backend && npm run test-frontend",
     "test-backend": "NODE_ENV=test NODE_PATH=./ mocha --compilers coffee:coffee-script/register --require ./test/chai.coffee --recursive --reporter spec",
     "test-frontend": "node ./node_modules/karma/bin/karma start ./karma.conf.coffee --single-run"
@@ -63,7 +63,7 @@
     "co": "^4.6.0",
     "cson": "^3.0.1",
     "cssqd-shared": "file:./shared",
-    "electron-prebuilt": "^0.37.7",
+    "electron": "^1.4.6",
     "koa": "^1.1.0",
     "koa-bodyparser": "^2.0.1",
     "koa-ejs": "^3.0.0",
