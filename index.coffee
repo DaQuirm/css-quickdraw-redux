@@ -6,6 +6,7 @@ path        = require 'path'
 koa         = require 'koa'
 serve       = require 'koa-static'
 mongoose    = require 'mongoose'
+mongoose.Promise = Promise
 
 appConfig   = require './config'
 
