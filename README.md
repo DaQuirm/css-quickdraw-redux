@@ -30,7 +30,7 @@ npm run dev
 * copy gamesession `_id`
 * `npm run dev`
 * open http://localhost:3000/game?id=<gamesession_id>
-* open same url in different browser/incognito window
-* authorize other provider (e.g Twitter)
+* open the same url in different browser/incognito window
+* authorize another provider (e.g Twitter)
 * enjoy cssqd 😏
 
